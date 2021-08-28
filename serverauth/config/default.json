@@ -1,0 +1,4 @@
+{
+  "MONGOuri": "mongodb+srv://ShreyaSubramaniyam:hackathon123@cluster0.hyccb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  "baseuri": "http://localhost:5000"
+}

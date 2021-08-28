@@ -1,0 +1,20 @@
+{
+  "name": "serverauth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "npm server",
+    "dev": "nodemon server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "config": "^3.3.6",
+    "express": "^4.17.1",
+    "hbs": "^4.1.2",
+    "mongoose": "^6.0.2"
+  }
+}
