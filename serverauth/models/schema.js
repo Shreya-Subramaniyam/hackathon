@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+// const { schm } = require('mongoose');
 
 const authschema = new mongoose.Schema({
   name: {
@@ -8,7 +9,8 @@ const authschema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    dropDups: true
   },
   password: {
     type: String,
@@ -20,4 +22,18 @@ const authschema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('AUTH', authschema);
+AUTHschema = mongoose.model('AUTH', authschema);
+
+// module.exports = mongoose.model('AUTH', authschema);
+
+const routeschema = new mongoose.Schema({
+  route: {
+    type: String,
+    required: true
+  }
+});
+
+// module.exports = mongoose.model('Route', routeschema);
+ROUTEschema = mongoose.model('Route', routeschema);
+
+module.exports = { Auth: AUTHschema, Routes: ROUTEschema};

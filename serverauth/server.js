@@ -8,7 +8,8 @@ const bodyParser = require('body-parser');
 const connectDB = require('./config/db');
 connectDB();
 
-const signupschema = require('./models/schema');
+const { Auth } = require('./models/schema');
+const { Routes } = require('./models/schema');
 app.use(bodyParser.json());
 
 app.use(express.urlencoded({ extended: true }));
@@ -40,7 +41,7 @@ app.post('/signup', async (req, res) => {
       // res.render("signup");
     }
     else {
-      const signupuser = new signupschema({
+      const signupuser = new Auth({
         name: req.body.name,
         email: req.body.email,
         password: req.body.pass,
@@ -48,7 +49,10 @@ app.post('/signup', async (req, res) => {
       })
 
       await signupuser.save();
-      res.status(201).render("index");
+      res.status(201).render("home");
+      app.get('/home', (req, res) => {
+        res.render("home");
+      })
       }
     }
   catch (e) {
@@ -61,18 +65,41 @@ app.get('/login', (req, res) => {
   res.render("login");
 })
 
-app.post('/login', async (req, res) =>{
+app.post('/login', async (req, res) => {
   try {
-
+    // console.log("working");
     const p = req.body.pass;
-    const usere = await signupuser.findOne({email:req.body.email});
+    const usere = await Auth.findOne({email:req.body.email});
+    console.log(usere);
     if(p !== usere.password) {
       res.render("alertlogin");
     }
     else {
-      res.status(201).render("index");
+      res.status(201).render("home");
+      app.get('/home', (req, res) => {
+        res.render("home");
+      })
     }
-  } catch (e) {
+  }
+
+  catch (e) {
     res.status(400).render("alertlogin");
+  }
+})
+
+app.post('/home', async (req, res) => {
+  try {
+    const USERroute = req.body.userroute;
+    const createUserRoute = new routeschema({
+      route: USERroute
+    })
+    app.get('/' + USERroute, (req, res) => {
+      console.log("we're in!");
+    })
+
+  } catch (e) {
+
+  } finally {
+
   }
 })
