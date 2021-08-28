@@ -1,7 +1,36 @@
-<!DOCTYPE html>
 <html lang="en">
+<style>
+  .title {
+    text-align: center;
+  }
+  .container{
+    background-color: #A9A9A9;
+  }
+
+  .signup {
+    justify-content: center;
+    width: 100%;
+  }
+  input[type=text] {
+    width: 40%;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+  input[type=submit] {
+  width: 15%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+  background: black;
+  border-radius: 4px;
+  color: white;
+  border-radius: 3px;
+  justify-content: center;
+}
+
+</style>
 <head>
-  <title>Sign Up</title>
+  <title class="title">Sign Up</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -15,26 +44,29 @@
       <form class="signup" action="/signup" method="post">
         <div>
           <label for="name">Name:</label>
+          <br>
           <input type="text" name="name" id="name">
         </div>
         <div>
           <label for="email">Email:</label>
+          <br>
           <input type="text" name="email" id="email">
           <br>
         </div>
         <div>
           <label for="pass">Password:</label>
+          <br>
           <input type="text" name="pass" id="pass">
           <br>
         </div>
         <div>
           <label for="cpass">Confirm Password:</label>
+          <br>
           <input type="text" name="cpass" id="cpass">
           <br>
         </div>
-        <div>
-          <label for="submit">Submit</label>
-          <input type="submit" name="submit" id="submit">
+        <div class="submitbutton">
+          <input type="submit" name="submit" id="submit" value="SUBMIT">
           <br>
         </div>
       </form>

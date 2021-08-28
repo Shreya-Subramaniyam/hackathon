@@ -70,7 +70,7 @@ app.post('/login', async (req, res) => {
     // console.log("working");
     const p = req.body.pass;
     const usere = await Auth.findOne({email:req.body.email});
-    console.log(usere);
+    // console.log(usere);
     if(p !== usere.password) {
       res.render("alertlogin");
     }
