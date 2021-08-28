@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const bodyParser = require('body-parser');
+// const alert = require('alerts');
 // const popup = require('popups');
 
 const connectDB = require('./config/db');
@@ -35,7 +36,8 @@ app.post('/signup', async (req, res) => {
   try {
 
     if(req.body.pass !== req.body.cpass) {
-      alert('passwords do not match')
+      res.render("alert");
+      // res.render("signup");
     }
     else {
       const signupuser = new signupschema({
@@ -46,9 +48,31 @@ app.post('/signup', async (req, res) => {
       })
 
       await signupuser.save();
+      res.status(201).render("index");
       }
     }
   catch (e) {
     res.status(400).send(error);
     }
+})
+
+
+app.get('/login', (req, res) => {
+  res.render("login");
+})
+
+app.post('/login', async (req, res) =>{
+  try {
+
+    const p = req.body.pass;
+    const usere = await signupuser.findOne({email:req.body.email});
+    if(p !== usere.password) {
+      res.render("alertlogin");
+    }
+    else {
+      res.status(201).render("index");
+    }
+  } catch (e) {
+    res.status(400).render("alertlogin");
+  }
 })
